@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+<constant name="struts.multipart.saveDir" value="/tmp"/>
+<constant name="struts.i18n.encoding" value="utf-8"></constant>
+<constant name="struts.configuration.xml.reload" value="true"/>
+<constant name="struts.devMode" value="true"/>
+    
+<package name="user" extends="struts-default" namespace="/user">
+	<action name="checkreserve" class="CheckReserveAction" method="findall">
+		<result>/goods/show.jsp</result>			
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="download" class="DownloadAction" method="download"> 
+      	<result type="stream"> 
+			<param name="contentType">application/octet-stream</param> 
+			<param name="inputName">inputStream</param> 
+			<param name="contentDisposition">attachment;filename="${fileName}"</param> 
+			<param name="bufferSize">4096</param> 
+      	</result> 
+   </action>
+   <action name="downloadN" class="DownloadNAction" method="downloadN"> 
+      	<result type="stream"> 
+			<param name="contentType">application/octet-stream</param> 
+			<param name="inputName">inputStream</param> 
+			<param name="contentDisposition">attachment;filename="${fileName}"</param> 
+			<param name="bufferSize">4096</param> 
+      	</result> 
+   </action>
+     <action name="downloadL" class="DownloadLAction" method="downloadL"> 
+      	<result type="stream"> 
+			<param name="contentType">application/octet-stream</param> 
+			<param name="inputName">inputStream</param> 
+			<param name="contentDisposition">attachment;filename="${fileName}"</param> 
+			<param name="bufferSize">4096</param> 
+      	</result> 
+   </action>
+	<action name="showlinchuang" class="ShowLCAction" method="showlinchuang">
+		<result>/backstage/note/writelinchuan.jsp</result>	
+		<result name="error">/result/error.jsp</result>			
+	</action>
+	<action name="deleteN" class="DeleteNAction" method="deleteN">
+		<result>/backstage/note/deleteNok.jsp</result>	
+		<result name="error">/result/error.jsp</result>		
+			
+	</action>
+	<action name="deleteL" class="DeleteNAction" method="deleteL">
+		<result>/backstage/note/deleteLok.jsp</result>	
+		<result name="error">/result/error.jsp</result>			
+	</action>
+	<action name="addQuestion" class="AddQuestionAction" method="addQuestion">
+		<result>/backstage/questionaire/addQuestion.jsp</result>	
+		<result name="error">/result/error.jsp</result>			
+	</action>
+	<action name="createQ" class="CreateQAction" method="createQ">
+		<result>/backstage/questionaire/createQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>			
+	</action>
+	<action name="showQuestion" class="ShowQuestionAction" method="show">
+		<result>/backstage/questionaire/addQ.jsp</result>		
+		<result name="error">/result/error.jsp</result>		
+	</action>
+	<action name="showQ" class="ShowQAction" method="showQ">
+		<result>/backstage/questionaire/showAllQ.jsp</result>		
+		<result name="error">/result/error.jsp</result>		
+	</action>
+	<action name="register" class="UserRegisterAction" method="register">
+		<result>/backstage/register/ok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="register1" class="UserRegisterAction" method="register1">
+		<result>/result/userok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	
+<!-- 	<action name="registerValid" class="UserRegisterAction" method="registerValid">
+	<result>/backstage/register/ok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action> -->
+	
+	<action name="addNote" class="AddNoteAction" method="addNote">		
+		<result>/backstage/note/writenote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showNote" class="ShowNoteAction" method="shownote">
+		<result>/backstage/note/shownote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showByNo" class="ShowQByNoAction" method="showByNo">
+		<result>/backstage/questionaire/checkQuestionaire.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="addQ" class="AddQAction" method="addQ">
+		<result>/backstage/questionaire/addQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="addQD" class="AddQDAction" method="addQD">
+		<result>/backstage/questionaire/addQOK.jsp</result>
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="qiyong" class="OpenQAction" method="qiyong">
+		<result>/backstage/questionaire/showAllQ.jsp</result>
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="updateQno" class="OpenQAction" method="updateQno">
+		<result>/backstage/superadmin/updatenameok.jsp</result>
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="userlogin" class="LoginAction" method="userlogin">
+		<result>/backstage/index.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="usershowByNo" class="UserQAction" method="usershowByNo">
+		<result>/backstage/userQ/writeQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="enterQ" class="UserEnterQAction" method="enterQ">
+		<result>/backstage/userQ/userQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+		<result name="none">/backstage/userQ/end.jsp</result>
+	</action>
+	<action name="enterR" class="UserEnterRAction" method="enterR">
+		<result>/backstage/reserve/reserved.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+		<result name="none">/backstage/reserve/reserve.jsp</result>
+	</action>
+	<action name="ureserve" class="ReserveAction" method="ureserve">
+		<result>/backstage/reserve/reserveS.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showRStatus" class="ShowRStatusAction" method="showRStatus">
+		<result>/backstage/reserve/reserveS.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+		<result name="none">/backstage/reserve/reserve.jsp</result>
+		<result name="input">/backstage/reserve/reservenotice.jsp</result>
+	</action>
+	<action name="showRByS" class="ShowRBySAction" method="showRByS">
+		<result>/backstage/reserve/showR.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="updateS" class="UpdateStatusActioin" method="updateS">
+		<result>/backstage/reserve/showR.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="submitAnswer" class="UserSubmitAnswerAction" method="submitAnswer">
+		<result>/backstage/userQ/end.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adshowusers" class="AdminShowUsersAction" method="adshowusers">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adshowsnote" class="UserShowSnoteAction" method="adshowsnote">
+		<result>/backstage/systemnote/usersnote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adshowtnote" class="UserShowTnoteAction" method="adshowtnote">
+		<result>/backstage/tuijiannote/usertnote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adshowdnote" class="UserShowDnoteAction" method="adshowdnote">
+		<result>/backstage/dannote/usedannote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="checkQlist" class="CheckQlistAction" method="checkQlist">
+		<result>/backstage/userQ/checkqlist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="checkQ" class="CheckQAction" method="checkQ">
+		<result>/backstage/userQ/checkq.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="writelc" class="AddLinchuangAction" method="writelc">
+		<result>/backstage/note/lcok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+
+	
+	<action name="showBySno" class="UserShowSnoteAction" method="showBySno">
+		<result>/backstage/systemnote/snoteinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showByTno" class="UserShowTnoteAction" method="showByTno">
+		<result>/backstage/tuijiannote/tnoteinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showByDno" class="UserShowDnoteAction" method="showByDno">
+		<result>/backstage/dannote/dnoteinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="resultshow" class="QresultAction" method="resultshow">
+		<result>/backstage/userQ/resultshow.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+
+</package>
+
+<package name="admin" extends="struts-default" namespace="/admin">
+	<action name="qalllist" class="QAllListAction" method="qalllist">
+		<result>/backstage/admin/showallQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showUlist" class="ShowUlistAction" method="showUlist">
+		<result>/backstage/admin/showUList.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showUndo" class="ShowUlistAction" method="showUndo">
+		<result>/backstage/admin/showUList.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showdo" class="ShowUlistAction" method="showdo">
+		<result>/backstage/admin/showUList.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showUQ" class="ShowUQAction" method="showUQ">
+		<result>/backstage/admin/checkq.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="luruabc" class="LuruAction" method="luruabc">
+		<result>/backstage/admin/datain.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adsubmitwj" class="ADSubmitAction" method="adsubmitwj">
+		<result>/backstage/admin/luruok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="lcshowuser" class="LcShowUserAction" method="lcshowuser">
+		<result>/backstage/admin/showalluser.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="tiao" class="AdminEnterlcAction" method="tiao">
+		<result>/backstage/admin/adwritelc.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adwritelc" class="AdAddLcAction" method="adwritelc">
+		<result>/backstage/admin/linchuangok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="adshowusers" class="AdminShowUsersAction" method="adshowusers">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showau2" class="AdminShowUsersAction" method="showau2">
+		<result>/backstage/dannote/notelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showau3" class="AdminShowUsersAction" method="showau3">
+		<result>/backstage/email/emailist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showByNo" class="AdminShowUsersAction" method="showByNo">
+		<result>/backstage/admin/userinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+
+	<action name="deleteUser" class="AdminShowUsersAction" method="deleteUser">
+		<result>/backstage/admin/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="uupdateUser" class="AdminShowUsersAction" method="uupdateUser">
+		<result>/backstage/admin/updateok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="saddNote" class="AddSnoteAction" method="addSnote">
+		<result>/backstage/admin/snote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showslist" class="AddSnoteAction" method="showslist">
+		<result>/backstage/systemnote/snotelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showsByNo" class="AddSnoteAction" method="showsByNo">
+		<result>/backstage/systemnote/showsnote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteS" class="AddSnoteAction" method="deleteS">
+		<result>/backstage/systemnote/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="addDnote" class="AddDnoteAction" method="addDnote">
+		<result>/backstage/dannote/addDok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showdByNo" class="AddDnoteAction" method="showdByNo">
+		<result>/backstage/dannote/showdannote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showdanlist" class="AddDnoteAction" method="showdanlist">
+		<result>/backstage/dannote/dannotelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteDan" class="AddDnoteAction" method="deleteDan">
+		<result>/backstage/dannote/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="sendMail" class="SendEmailAction" method="sendMail">
+		<result>/backstage/email/sendok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="updateanswer" class="UpdateAnswer" method="updateanswer">
+		<result>/backstage/admin/checkqok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchbuno" class="SearchByNo" method="searchbuno">
+		<result>/backstage/admin/showUList.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchbyno" class="SearchByNo" method="searchbyno">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchbynosshowallu" class="SearchByNo" method="searchbynosshowallu">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchbynoashowallu" class="SearchByNo" method="searchbynoashowallu">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="uploadresult" class="UploadResultAction" method="uploadresult">
+		<result>/backstage/admin/shangchuangok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+</package>
+
+<package name="superadmin" extends="struts-default" namespace="/superadmin">
+
+	<action name="register" class="AddAdminAction" method="register">
+		<result>/backstage/sadmin/aadmin.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="gqresultfile" class="GAddresultfileAction" method="gqresultfile">
+		<result>/backstage/questionaire/resultfile.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteQr" class="DeleteQrAction" method="deleteQr">
+		<result>/backstage/questionaire/qrok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="qresultfile" class="AddQresultfileAction" method="qresultfile">
+		<result>/backstage/questionaire/qrok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	
+	<action name="showadmin" class="ShowAllAdminAction" method="showadmin">
+		<result>/backstage/sadmin/adminlist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showaByNo" class="ShowAllAdminAction" method="showaByNo">
+		<result>/backstage/sadmin/uadmin.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteAdmin" class="ShowAllAdminAction" method="deleteAdmin">
+		<result>/backstage/sadmin/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="upateAdmin" class="ShowAllAdminAction" method="upateAdmin">
+		<result>/backstage/sadmin/updateok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="addTnote" class="AddTnoteAction" method="addTnote">
+		<result>/backstage/supernote/addTok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="forbidall" class="ForbidAllAction" method="forbidall">
+		<result>/backstage/questionaire/showAllQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteQu" class="DeleteQQuAction" method="deleteQu">
+		<result>/backstage/superadmin/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="questionlist" class="QuestionListAction" method="questionlist">
+		<result>/backstage/superadmin/questionlist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="updateshow" class="UpdateShowAction" method="updateshow">
+		<result>/backstage/superadmin/updateok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deletequestion" class="DeleteQuestionAction" method="deletequestion">
+		<result>/backstage/superadmin/updateok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="addNQ" class="AddAQAction" method="addNQ">
+		<result>/backstage/superadmin/addNQok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showlcu" class="ShowLcUserListAction" method="showlcu">
+		<result>/backstage/superadmin/lcuserlist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showlcByNo" class="ShowLcListAction" method="showlcByNo">
+		<result>/backstage/superadmin/lclist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showau" class="ShowAlluserAction" method="showau">
+		<result>/backstage/superadmin/showallu.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showau1" class="ShowAlluserAction" method="showau1">
+		<result>/backstage/supernote/notelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	
+	<action name="showat" class="ShowAllTuijianAction" method="showat">
+		<result>/backstage/supernote/mtuijian.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="deleteTuijian" class="ShowAllTuijianAction" method="deleteTuijian">
+		<result>/backstage/supernote/deleteok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="tupdate" class="ShowAllTuijianAction" method="tupdate">
+		<result>/backstage/supernote/tupdateok.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showtByNo" class="ShowAllTuijianAction" method="showtByNo">
+		<result>/backstage/supernote/tuijiannote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="showByNo" class="ShowByUserAction" method="showByNo">
+		<result>/backstage/superadmin/userinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="noteshowByNo" class="ShowAlluserAction" method="noteshowByNo">
+		<result>/backstage/supernote/supernote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="dnoteshowByNo" class="ShowAlluserAction" method="dnoteshowByNo">
+		<result>/backstage/dannote/dannote.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="eshowByNo" class="ShowAlluserAction" method="eshowByNo">
+		<result>/backstage/email/email.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="updatetihao" class="UpdateTihaoAction" method="updatetihao">
+		<result>/backstage/superadmin/updatetihaook.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchlcbyuser" class="SearchlcAction" method="searchlcbyuser">
+		<result>/backstage/superadmin/lcuserlist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchlcbyuser1" class="SearchlcAction" method="searchlcbyuser1">
+		<result>/backstage/supernote/notelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchlcbyuser2" class="SearchlcAction" method="searchlcbyuser2">
+		<result>/backstage/supernote/mtuijian.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchbyuser" class="SearchlcAction" method="searchbyuser">
+		<result>/backstage/dannote/notelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchdanbytitle" class="SearchlcAction" method="searchdanbytitle">
+		<result>/backstage/dannote/dannotelist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchforuli" class="SearchlcAction" method="searchforuli">
+		<result>/backstage/admin/userallinfo.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchforsalu" class="SearchlcAction" method="searchforsalu">
+		<result>/backstage/admin/showalluser.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchforsul" class="SearchlcAction" method="searchforsul">
+		<result>/backstage/admin/showUList.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchforssau" class="SearchlcAction" method="searchforssau">
+		<result>/backstage/superadmin/showallu.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="searchmailbyuser" class="SearchlcAction" method="searchmailbyuser">
+		<result>/backstage/email/emailist.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="sresultshow" class="QresultshowAction" method="sresultshow">
+		
+	</action>
+	<action name="sqalllist" class="SQAllListAction" method="sqalllist">
+		<result>/backstage/superadmin/showallQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="downQ" class="DownQAction" method="downQ">
+		<result>/backstage/questionaire/downquestionaire.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="downloadQ" class="SDownloadAction" method="downloadQ">
+		<result>/backstage/superadmin/downloadQ.jsp</result>	
+		<result name="error">/result/error.jsp</result>	
+	</action>
+	<action name="download" class="SDownloadAction" method="download"> 
+      	<result type="stream"> 
+			<param name="contentType">application/octet-stream</param> 
+			<param name="inputName">inputStream</param> 
+			<param name="contentDisposition">attachment;filename="${fileName}"</param> 
+			<param name="bufferSize">4096</param> 
+      	</result> </action>
+	<action name="downloadQr" class="DownloadQrAction" method="downloadQr"> 
+      	<result type="stream"> 
+			<param name="contentType">application/octet-stream</param> 
+			<param name="inputName">inputStream</param> 
+			<param name="contentDisposition">attachment;filename="${real}"</param> 
+			<param name="bufferSize">4096</param> 
+      	</result> 
+   </action> 
+</package>
+</struts>    

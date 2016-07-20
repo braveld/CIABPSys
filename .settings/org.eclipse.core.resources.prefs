@@ -1,0 +1,19 @@
+#Mon Nov 23 23:29:09 CST 2015
+eclipse.preferences.version=1
+encoding//WebRoot/backstage/admin/adminUserinfo.jsp=UTF-8
+encoding//WebRoot/backstage/admin/shangchuangok.jsp=UTF-8
+encoding//WebRoot/backstage/note/shownote.jsp=UTF-8
+encoding//WebRoot/backstage/note/writelinchuan.jsp=UTF-8
+encoding//WebRoot/backstage/note/writenote.jsp=UTF-8
+encoding//WebRoot/backstage/questionaire/addQ.jsp=UTF-8
+encoding//WebRoot/backstage/questionaire/addQOK.jsp=UTF-8
+encoding//WebRoot/backstage/questionaire/addQuestion.jsp=UTF-8
+encoding//WebRoot/backstage/questionaire/showAllQ.jsp=UTF-8
+encoding//WebRoot/backstage/register/ok.jsp=UTF-8
+encoding//WebRoot/backstage/reserve/showR.jsp=UTF-8
+encoding//WebRoot/backstage/superadmin/showallu.jsp=UTF-8
+encoding//WebRoot/backstage/tuijian/result.jsp=UTF-8
+encoding//WebRoot/backstage/userQ/end.jsp=UTF-8
+encoding//WebRoot/backstage/userQ/writeQ.jsp=UTF-8
+encoding//WebRoot/index.jsp=UTF-8
+encoding//WebRoot/js/build/dist/chart/wordCloud.js=UTF-8

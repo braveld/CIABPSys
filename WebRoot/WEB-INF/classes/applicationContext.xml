@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+
+		<property name="jdbcUrl" value="jdbc:mysql://120.24.81.191:3306/ciabp?failOverReadOnly=false&amp;useUnicode=true&amp;characterEncoding=utf-8"/>
+		<property name="user" value="root" />
+		<property name="password" value="123456" />
+		<property name="maxPoolSize" value="10" />
+		<property name="minPoolSize" value="3" />
+		<property name="idleConnectionTestPeriod" value="25200" />
+	</bean>
+	
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="session" class="com.ciabp.utils.UserSession" scope="session" init-method="init" destroy-method="destroy"></bean>
+	
+	<!-- Dao -->
+	<bean id="daoBase" class="org.springframework.jdbc.core.support.JdbcDaoSupport" abstract="true"><property name="dataSource" ref="dataSource" /></bean>
+	<bean id="adminDao" class="com.ciabp.daos.AdminDao" parent="daoBase"></bean>
+	<bean id="noteDao" class="com.ciabp.daos.NoteDao" parent="daoBase"></bean>
+	<bean id="snoteDao" class="com.ciabp.daos.SnoteDao" parent="daoBase"></bean>
+	<bean id="tnoteDao" class="com.ciabp.daos.TnoteDao" parent="daoBase"></bean>
+	<bean id="dnoteDao" class="com.ciabp.daos.DnoteDao" parent="daoBase"></bean>
+	<bean id="answerDao" class="com.ciabp.daos.AnswerDao" parent="daoBase"></bean>
+	<bean id="reserveDao" class="com.ciabp.daos.ReserveDao" parent="daoBase"></bean>
+	<bean id="userDao" class="com.ciabp.daos.UserDao" parent="daoBase"></bean>
+	<bean id="questionDao" class="com.ciabp.daos.QuestionDao" parent="daoBase"></bean>
+	<bean id="questionaireDao" class="com.ciabp.daos.QuestionaireDao" parent="daoBase"></bean>
+	<bean id="qDetailDao" class="com.ciabp.daos.QDetailDao" parent="daoBase"></bean>
+	<bean id="writeQStatusDao" class="com.ciabp.daos.WriteQStatusDao" parent="daoBase"></bean>
+	<bean id="noteImageDao" class="com.ciabp.daos.NoteImageDao" parent="daoBase"></bean>
+	<bean id="linchuangDao" class="com.ciabp.daos.LinchuangDao" parent="daoBase"></bean>
+	<bean id="qresultDao" class="com.ciabp.daos.QresultDao" parent="daoBase"></bean>
+	<bean id="qresultfileDao" class="com.ciabp.daos.QresultfileDao" parent="daoBase"></bean>
+	
+	
+	<!-- Service -->
+	<bean id="serviceBase" class="com.ciabp.services.ServiceBase" abstract="true"></bean>
+	<bean id="adminService" class="com.ciabp.services.AdminService" parent="serviceBase">
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<bean id="reserveService" class="com.ciabp.services.ReserveService" parent="serviceBase">
+		<property name="reserveDao" ref="reserveDao"></property>	
+	</bean>
+	<bean id="questionService" class="com.ciabp.services.QuestionService" parent="serviceBase">
+		<property name="questionDao" ref="questionDao"></property>	
+	</bean>
+	<bean id="answerService" class="com.ciabp.services.AnswerService" parent="serviceBase">
+		<property name="answerDao" ref="answerDao"></property>
+	</bean>
+	<bean id="noteService" class="com.ciabp.services.NoteService" parent="serviceBase">
+		<property name="noteDao" ref="noteDao"></property>
+		<property name="noteImageDao" ref="noteImageDao"></property>
+	</bean>
+	<bean id="snoteService" class="com.ciabp.services.SnoteService" parent="serviceBase">
+		<property name="snoteDao" ref="snoteDao"></property>
+	</bean>
+	<bean id="tnoteService" class="com.ciabp.services.TnoteService" parent="serviceBase">
+		<property name="tnoteDao" ref="tnoteDao"></property>
+	</bean>
+	<bean id="dnoteService" class="com.ciabp.services.DnoteService" parent="serviceBase">
+		<property name="dnoteDao" ref="dnoteDao"></property>
+	</bean>
+	<bean id="questionaireService" class="com.ciabp.services.QuestionaireService" parent="serviceBase">
+		<property name="questionaireDao" ref="questionaireDao"></property>
+		<property name="answerDao" ref="answerDao"></property>
+	</bean>
+	<bean id="userService" class="com.ciabp.services.UserService" parent="serviceBase">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+	<bean id="detailService" class="com.ciabp.services.QDetailService" parent="serviceBase">
+		<property name="qDetailDao" ref="qDetailDao"></property>
+	</bean>
+	<bean id="writeqstatusService" class="com.ciabp.services.WriteqstatusService" parent="serviceBase">
+		<property name="writeQStatusDao" ref="writeQStatusDao"></property>
+	</bean>
+	<bean id="noteImageService" class="com.ciabp.services.NoteImageService" parent="serviceBase">
+		<property name="noteImageDao" ref="noteImageDao"></property>
+	</bean>
+	<bean id="linchuangService" class="com.ciabp.services.LinchuangService" parent="serviceBase">
+		<property name="linchuangDao" ref="linchuangDao"></property>
+	</bean>
+	<bean id="qresultService" class="com.ciabp.services.QresultService" parent="serviceBase">
+		<property name="qresultDao" ref="qresultDao"></property>
+	</bean>
+	<bean id="qresultfileService" class="com.ciabp.services.QresultfileService" parent="serviceBase">
+		<property name="qresultfileDao" ref="qresultfileDao"></property>
+	</bean>
+	
+	<!-- Action -->
+	
+	<bean id="LoginAction" class="com.ciabp.actions.LoginAction" >
+		<property name="adminService" ref="adminService"></property>
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="DeleteNAction" class="com.ciabp.actions.user.DeleteNAction" >
+		<property name="noteService" ref="noteService"></property>
+		<property name="noteImageService" ref="noteImageService"></property>
+		<property name="linchuangService" ref="linchuangService"></property>
+	</bean>
+	<bean id="CheckReserveAction" class="com.ciabp.actions.CheckReserveAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="AddQuestionAction" class="com.ciabp.actions.superadmin.AddQuestionAction" >
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="CreateQAction" class="com.ciabp.actions.superadmin.CreateQAction" >
+		<property name="qDetailDao" ref="qDetailDao"></property>
+	</bean>
+	<bean id="ShowQuestionAction" class="com.ciabp.actions.superadmin.ShowQuestionAction" >
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="ShowQAction" class="com.ciabp.actions.superadmin.ShowQAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="UserRegisterAction" class="com.ciabp.actions.user.UserRegisterAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="AddNoteAction" class="com.ciabp.actions.user.AddNoteAction" >
+		<property name="noteService" ref="noteService"></property>
+		<property name="noteImageService" ref="noteImageService"></property>
+	</bean>
+	<bean id="AddSnoteAction" class="com.ciabp.actions.admin.AddSnoteAction" >
+		<property name="snoteService" ref="snoteService"></property>
+	</bean>
+	<bean id="AddTnoteAction" class="com.ciabp.actions.superadmin.AddTnoteAction" >
+		<property name="tnoteService" ref="tnoteService"></property>
+	</bean>
+	<bean id="AddDnoteAction" class="com.ciabp.actions.admin.AddDnoteAction" >
+		<property name="dnoteService" ref="dnoteService"></property>
+	</bean>
+	<bean id="UserShowSnoteAction" class="com.ciabp.actions.user.UserShowSnoteAction" >
+		<property name="snoteService" ref="snoteService"></property>
+	</bean>
+	<bean id="UserShowTnoteAction" class="com.ciabp.actions.user.UserShowTnoteAction" >
+		<property name="tnoteService" ref="tnoteService"></property>
+	</bean>
+	<bean id="UserShowDnoteAction" class="com.ciabp.actions.user.UserShowDnoteAction" >
+		<property name="dnoteService" ref="dnoteService"></property>
+	</bean>
+	<bean id="ShowNoteAction" class="com.ciabp.actions.user.ShowNoteAction" >
+		<property name="noteService" ref="noteService"></property>
+	</bean>
+	<bean id="ShowQByNoAction" class="com.ciabp.actions.superadmin.ShowQByNoAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="AddQAction" class="com.ciabp.actions.superadmin.AddQAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="AddQDAction" class="com.ciabp.actions.superadmin.AddQDAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="OpenQAction" class="com.ciabp.actions.superadmin.OpenQAction" >
+		<property name="qresultService" ref="qresultService"></property>
+		<property name="detailService" ref="detailService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="UserQAction" class="com.ciabp.actions.user.UserQAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+		<property name="detailService" ref="detailService"></property>
+		
+	</bean>
+	<bean id="UserEnterQAction" class="com.ciabp.actions.user.UserEnterQAction" >
+		<property name="detailService" ref="detailService"></property>
+		<property name="answerService" ref="answerService"></property>
+	</bean>
+	<bean id="UserEnterRAction" class="com.ciabp.actions.user.UserEnterRAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="ReserveAction" class="com.ciabp.actions.user.ReserveAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="ShowRStatusAction" class="com.ciabp.actions.user.ShowRStatusAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="ShowRBySAction" class="com.ciabp.actions.admin.ShowRBySAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="UpdateStatusActioin" class="com.ciabp.actions.admin.UpdateStatusActioin" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="UserSubmitAnswerAction" class="com.ciabp.actions.user.UserSubmitAnswerAction" >
+		<property name="answerService" ref="answerService"></property>
+		<property name="qresultService" ref="qresultService"></property>
+		<property name="writeqstatusService" ref="writeqstatusService"></property>
+	</bean>
+	<bean id="AdminShowUsersAction" class="com.ciabp.actions.admin.AdminShowUsersAction" >
+		<property name="userService" ref="userService"></property>
+		<property name="answerService" ref="answerService"></property>
+		<property name="qresultService" ref="qresultService"></property>
+		<property name="writeqstatusService" ref="writeqstatusService"></property>
+	</bean>
+	<bean id="CheckQlistAction" class="com.ciabp.actions.user.CheckQlistAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="CheckQAction" class="com.ciabp.actions.user.CheckQAction" >
+		<property name="questionService" ref="questionService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="AddLinchuangAction" class="com.ciabp.actions.user.AddLinchuangAction" >
+		<property name="linchuangService" ref="linchuangService"></property>
+	</bean>
+	<bean id="QAllListAction" class="com.ciabp.actions.admin.QAllListAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="ShowUlistAction" class="com.ciabp.actions.admin.ShowUlistAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="ShowUQAction" class="com.ciabp.actions.admin.ShowUQAction" >
+		<property name="questionService" ref="questionService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="LuruAction" class="com.ciabp.actions.admin.LuruAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="ADSubmitAction" class="com.ciabp.actions.admin.ADSubmitAction" >
+		<property name="answerService" ref="answerService"></property>
+		<property name="qresultService" ref="qresultService"></property>
+		<property name="writeqstatusService" ref="writeqstatusService"></property>
+	</bean>
+	<bean id="LcShowUserAction" class="com.ciabp.actions.admin.LcShowUserAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="ShowLCAction" class="com.ciabp.actions.user.ShowLCAction" >
+		<property name="linchuangService" ref="linchuangService"></property>
+	</bean>
+	<bean id="AdminEnterlcAction" class="com.ciabp.actions.admin.AdminEnterlcAction" >
+	</bean>
+	<bean id="AdAddLcAction" class="com.ciabp.actions.admin.AdAddLcAction" >
+		<property name="linchuangService" ref="linchuangService"></property>
+	</bean>
+	<bean id="ForbidAllAction" class="com.ciabp.actions.superadmin.ForbidAllAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="DeleteQQuAction" class="com.ciabp.actions.superadmin.DeleteQQuAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="QuestionListAction" class="com.ciabp.actions.superadmin.QuestionListAction" >
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="UpdateShowAction" class="com.ciabp.actions.superadmin.UpdateShowAction" >
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="DeleteQuestionAction" class="com.ciabp.actions.superadmin.DeleteQuestionAction" >
+		<property name="questionService" ref="questionService"></property>
+	</bean>
+	<bean id="AddAQAction" class="com.ciabp.actions.superadmin.AddAQAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="ShowLcUserListAction" class="com.ciabp.actions.superadmin.ShowLcUserListAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+	<bean id="AddAdminAction" class="com.ciabp.actions.superadmin.AddAdminAction" >
+		<property name="adminService" ref="adminService"></property>
+		<property name="adminDao" ref="adminDao"></property>
+	</bean>
+	<bean id="ShowAllAdminAction" class="com.ciabp.actions.superadmin.ShowAllAdminAction" >
+		<property name="adminService" ref="adminService"></property>
+		
+	</bean>
+	<bean id="ShowLcListAction" class="com.ciabp.actions.superadmin.ShowLcListAction" >
+		<property name="linchuangService" ref="linchuangService"></property>
+	</bean>
+	<bean id="ShowAlluserAction" class="com.ciabp.actions.superadmin.ShowAlluserAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="ShowAllTuijianAction" class="com.ciabp.actions.superadmin.ShowAllTuijianAction" >
+		<property name="tnoteService" ref="tnoteService"></property>
+	</bean>
+	<bean id="ShowByUserAction" class="com.ciabp.actions.superadmin.ShowByUserAction" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="UpdateTihaoAction" class="com.ciabp.actions.superadmin.UpdateTihaoAction" >
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="UpdateAnswer" class="com.ciabp.actions.admin.UpdateAnswer" >
+		<property name="answerService" ref="answerService"></property>
+		<property name="qresultService" ref="qresultService"></property>
+	</bean>
+	<bean id="SearchByNo" class="com.ciabp.actions.admin.SearchByNo" >
+		<property name="userService" ref="userService"></property>
+	</bean>
+	<bean id="SearchlcAction" class="com.ciabp.actions.superadmin.SearchlcAction" >
+		<property name="userService" ref="userService"></property>
+		<property name="tnoteService" ref="tnoteService"></property>
+		<property name="dnoteService" ref="dnoteService"></property>
+	</bean>
+	<bean id="QresultAction" class="com.ciabp.actions.user.QresultAction" >
+		<property name="qresultService" ref="qresultService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="QresultshowAction" class="com.ciabp.actions.superadmin.QresultshowAction" >
+		
+	</bean>
+	<bean id="SQAllListAction" class="com.ciabp.actions.superadmin.QAllListAction" >
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="DownQAction" class="com.ciabp.actions.superadmin.DownQAction" >
+		<property name="detailService" ref="detailService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+	<bean id="GAddresultfileAction" class="com.ciabp.actions.superadmin.GAddresultfileAction" >
+		<property name="qresultfileService" ref="qresultfileService"></property>
+		<property name="detailService" ref="detailService"></property>
+	</bean>
+	<bean id="AddQresultfileAction" class="com.ciabp.actions.superadmin.AddQresultfileAction" >
+		<property name="qresultfileService" ref="qresultfileService"></property>
+	</bean>
+	<bean id="DeleteQrAction" class="com.ciabp.actions.superadmin.DeleteQrAction" >
+		<property name="qresultfileService" ref="qresultfileService"></property>
+	</bean>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">  
+	        <property name="host" value="smtp.163.com"/>
+	        <property name="username" value="13381331390@163.com"/>  
+	        <property name="password" value="6278750gxf"/>  
+	</bean>  
+	  
+	<bean id="SendEmailAction" class="com.ciabp.actions.admin.SendEmailAction" >  
+	     <property name="mailSender"><ref bean="mailSender"/> </property>  
+	</bean> 
+
+	<bean id="UploadResultAction" class="com.ciabp.actions.admin.UploadResultAction" >
+		<property name="reserveService" ref="reserveService"></property>
+	</bean>
+	<bean id="DownloadAction" class="com.ciabp.actions.user.DownloadAction" ></bean>
+	<bean id="DownloadNAction" class="com.ciabp.actions.user.DownloadNAction" ></bean>
+	<bean id="DownloadLAction" class="com.ciabp.actions.user.DownloadLAction" ></bean>
+	<bean id="DownloadQrAction" class="com.ciabp.actions.superadmin.DownloadQrAction" ></bean>
+	<bean id="SDownloadAction" class="com.ciabp.actions.superadmin.DownloadAction" >	
+		<property name="userService" ref="userService"></property>
+		<property name="questionService" ref="questionService"></property>
+		<property name="questionaireService" ref="questionaireService"></property>
+	</bean>
+
+
+	<!-- transactions -->
+    <tx:advice id="defaultTxAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="tfind*" read-only="true" />
+            <tx:method name="tlist*" read-only="true" />
+            <tx:method name="tdo*" propagation="REQUIRES_NEW" />
+            <tx:method name="t*"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config>
+    	<!-- Service 方法添加事务处理 -->
+		<aop:pointcut id="serviceMethod" expression="execution(* com.ciabp.services.*.t*(..))" />
+		<aop:advisor id="defaultAdvisor" pointcut-ref="serviceMethod" advice-ref="defaultTxAdvice" />
+    </aop:config>
+
+</beans>

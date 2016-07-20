@@ -1,0 +1,123 @@
+/* CSS Document */
+
+/* 公共部分 */
+
+body{ background:url(../images/bg.jpg) repeat-x;  }
+*{font-size:14px;color:#333;margin:0 auto; padding:0;font-family:"微软雅黑";} 
+a{color:#333;text-decoration:none;}
+a:hover{text-decoration:none;color:#39c;}
+img{border:none;}
+img:hover{border:none;}
+li{list-style:none}
+.container{width:1200px; height:auto;background:url(../images/bg.jpg) repeat-x;}
+.line_c{ float:left; width:1200px; height:auto; background:#fff; }
+.line{ float:left; width:1200px; height:auto; background:#fff;}
+ 
+/* 网站顶部样式 */
+.top{ float:left; width:1200px; height:40px; background:#015191;}
+.top-left{ float:left; width:600px; height:40px; line-height:40px; color:#66ccff;}
+.top-right{ float:left; width:600px; height:40px; line-height:40px; text-align:right; color:#fff; font-weight:bold; cursor:pointer; }
+.top_right_a{float:left; width:560px; height:40px; line-height:40px; text-align:right; color:#fff; font-weight:bold; cursor:pointer;}
+.top_right_b{float:left; width:40px; height:40px; line-height:40px; text-align:left; color:#fff; font-weight:bold; cursor:pointer; }
+.logo{ float:left; width:1200px; height:120px; border-bottom:2px solid #ff6600;} 
+.banner{ float:left; width:1200px; height:375px;} 
+
+ 
+.navs{ float:left;width:1200px; height:50px;}
+/*导航条*/
+#nav {float:left; width:1200px; height:20px; line-height:20px; text-align:center;list-style:none; padding:15px 0;}
+#nav-index{ float:left; width:100px; height:20px; line-height:20px; padding-left:80px; color:#f60; font-weight:bold;font-size:18px;}
+#nav a{color:#125b95; font-weight:bold;font-size:18px;}
+#nav a:hover{color:#ff6600;}/* text-decoration:underline;*/
+#nav li{float:left;width:100px;position:relative;z-index:1; background:url(images/menuge.gif) no-repeat; border-left:2px solid #125b95;}
+#nav li:hover{background:#e3f1fc;}
+
+#nav li .title{display:block; }
+#nav li .submenu{width:100px; height:auto; padding-bottom:20px; margin-bottom:5px; line-height:25px;background:#e3f1fc;position:absolute;left:0;top:20px;display:none; padding-top:20px;    }
+#nav li .submenu dd{border-top:1px dotted #ddd;color:#666; margin-bottom:5px; }
+#nav li .submenu dd:hover{ background:#f60;color:#fff; cursor:pointer; }
+ 
+
+
+
+/* 首页 第一部分样式 */
+.news{ float:left; width:1100px; height:330px; background:#fff; border-bottom:1px solid #efefef; padding:0 50px;}
+.news-tit{ float:left; width:1100px; height:40px; border-bottom:2px solid #125b95; padding-top:20px;}
+.news-tit-sub1{ float:left; width:auto; padding-left:10px;  height:40px; line-height:40px; color:#125b95;font-size:18px; font-weight:bold;}
+.news-tit-sub2{ float:left; width:auto; padding-left:10px; height:40px; line-height:40px;color:#999;font-size:14px; font-family:Arial, Helvetica, sans-serif;}
+.news-tit-sub3{ float:right; width:auto; padding-right:10px; height:40px; line-height:40px;color:#125b95; font-size:12px;cursor:pointer;}
+.news-sub{ float:left; width:300px; height:auto; padding:0 33px;}
+.news-sub-tit{ float:left; width:85px; height:25px; line-height:25px; background:#ff6600; color:#fff; text-align:center; margin-top:20px;}
+.news-sub-list1 a{ float:left; width:300px; overflow:hidden; height:40px; line-height:40px; padding-top:10px; color:#333; font-weight:bold; font-size:18px; cursor:pointer;}
+.news-sub-list2{ float:left; width:300px; overflow:hidden; height:150px; line-height:25px; color:#666; cursor:pointer;text-align:justify; text-justify:inter-ideograph;text-indent:2em;font-weight:bold;font-weight:normal;}
+
+
+ /* 首页 第二部分样式 */
+.sub2-box{ float:left; width:1100px; height:250px; background:#fff; padding-top:20px;padding-left:50px; padding-right:50px;}
+.sub2-tit{ float:left; width:350px; height:30px; line-height:30px; color:#125b95; font-weight:bold;font-size:18px; padding-bottom:10px;}
+.sub2-tit-3{ float:left; width:auto; height:30px; line-height:30px; color:#125b95; font-weight:bold;font-size:18px; padding-bottom:10px;}
+.sub2-tit-right{float:right; width:auto; padding-right:10px; height:30px; line-height:30px;color:#125b95; font-size:12px;cursor:pointer;}
+.sub2-admin-right{float:right; width:auto; padding-right:30px; padding-top:10px;height:30px; line-height:30px;color:#125b95; font-size:12px;cursor:pointer;}
+.login-box{ float:left; width:350px; height:250px; }
+.login{ float:left; width:300px; height:160px; border:1px solid #ccc; padding:20px 10px 20px 30px; }
+.login-left{ float:left; width:45px; height:35px;}
+.login-right{ float:left; width:255px; height:35px;}
+.login-button{ float:left; width:100px; height:30px; line-height:30px; background:#f60; color:#fff; font-weight:bold; text-align:center; font-size:18px; margin-left:45px; margin-top:15px;cursor:pointer;}
+.login-button2 a{ float:left; width:100px; height:30px; line-height:30px; background:#f60; color:#fff; font-weight:bold; text-align:center; font-size:18px; margin-left:20px; margin-top:15px;cursor:pointer;}
+.login-button3{ float:left; width:100px; height:30px; line-height:30px; background:#f60; color:#fff; font-weight:bold; text-align:center; font-size:18px; margin-left:45px; margin-top:15px;cursor:pointer;}
+.login-button4{ float:left; width:100px; height:30px; line-height:30px; background:#f60; color:#fff; font-weight:bold; text-align:center; font-size:18px; margin-left:20px; margin-top:15px;cursor:pointer;}
+
+
+.login-select{ width:200px; height:25px; line-height:25px; border:1px solid #aaaaaa; padding-left:10px; color:#ccc;}
+.login-input{width:220px; height:25px; line-height:25px; border:1px solid #e0dcdb; background:#fefaf9; padding-left:10px; color:#ccc;}
+
+
+
+
+.video{ float:left; width:350px; height:250px;padding-left:25px;}
+.video-center{float:left; width: 300px; height:auto;padding-left:25px;}
+.video-left{ float:left; width:160px; height:auto;}
+.video-left-pic{ float:left; width:160px; height:130px; padding-top:5px; padding-bottom:5px;}
+.video-left-text{ float:left; width:160px; height:30px; line-height:30px; background:#f2f7fc; text-align:center;}
+.video-right{ float:left; width:160px; height:200px;padding-left:10px;}
+.video-right-list{ float:left; width:160px;height:25px; line-height:25px; color:#666; cursor:pointer; overflow:hidden; }
+.notice{ float:left; width:300px; height:250px; padding-left:25px;}
+.notice-list{ float:left; width:300px; overflow:hidden; height:25px; line-height:25px; color:#666; cursor:pointer; padding-left:25px;}
+
+ 
+
+
+.banner2{ float:left; width:1200px; height:250px;} 
+
+/* 二级页面 左侧部分样式 */
+.index2-left{ float:left; width:250px; height:500px; padding-right:50px;}
+.index2-left-tit{ float:left; width:250px; height:40px; border-bottom:2px solid #125b95; padding-top:50px;}
+.index2-left-select a{ float:left; width:220px; height:35px; line-height:35px; background:#125b95; margin-top:5px; padding-left:30px; color:#fff; font-weight:bold; cursor:pointer;}
+.index2-left-noselect a{ float:left; width:220px; height:35px; line-height:35px; background:#e3f1fc; margin-top:5px; padding-left:30px; color:#125b95;  font-weight:bold; cursor:pointer;}
+
+
+
+/* 二级页面 右侧部分样式 */ 
+.index2-right{ float:left; width:850px; height:auto; padding:50px 30px 100px 20px;}
+.index2-right-tit{ float:left; width:850px; height:80px; line-height:80px; font-size:24px; font-weight:bold; text-align:center;}
+.index2-right-tit a{ float:left; width:450px; height:80px; line-height:80px; font-size:24px; font-weight:bold; text-align:center;}
+.index2-right-text a{ float:left; width:450px; height:auto;text-align:left;font-weight:normal;}
+.index2-right-tit2{ float:left; width:450px; height:50px; line-height:50px; text-align:right;}
+.index2-right-text{ float:left; width:450px; height:auto;}
+.index2-right-text p{line-height:25px; text-indent:2em; padding-top:20px;text-align:justify; text-justify:inter-ideograph;}
+ 
+
+/* 页尾样式 */
+
+.bottom-box{ float:left; width:100%; height:auto; background:#f9f9f9; margin-top:30px; border-top:1px solid #ccc;}
+.link{ width:1200px; height:auto; }
+.link-tit{ float:left; width:1200px;  height:35px; line-height:35px; padding-top:40px; font-size:18px; font-weight:bold; color:#ff6600;}
+.link-text{ float:left; width:1180px; height:60px; line-height:25px; color:#125b95;  cursor:pointer; color:#1d72b9;  border-bottom:1px solid #cacaca; padding-bottom:30px; padding-left:20px;}
+
+.bottom-p1{ float:left;  width:1200px; height:30px; line-height:30px; text-align:center; font-weight:bold; color:#666; padding-top:30px;}
+.bottom-p2{  float:left; width:1200px; height:30px; line-height:30px; text-align:center; font-weight:bold; color:#666; padding-bottom:30px;}
+
+
+
+
+
